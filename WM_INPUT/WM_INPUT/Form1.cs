@@ -72,8 +72,7 @@ namespace WM_INPUT
                 str = string.Format("{0}({1},{2},{3},{4},{5})\r\n", input.Header.Device, "Mouse", LastX, LastY, ButtonData, delta);
                 if (str != "0,0,0,0,0\r\n")
                 {
-                    Console.WriteLine(str);
-                    textBox1.Text = str;
+                    log(str);
                 }
             }
             else if (input.Header.Type == 1)
@@ -90,10 +89,16 @@ namespace WM_INPUT
                     message = "keyUp";
                 }
                 str = string.Format("{0}({1},{2})\r\n", input.Header.Device, message, VKey);
-                Console.WriteLine(str);
-                textBox1.Text = str;
+                log(str);
             }
         }
+        private void log(string msg)
+        {
+            writeConsole(msg);
+            Console.WriteLine(msg);
+            textBox1.Text = msg;
+        }
+
         protected override void WndProc(ref Message m)
         {
             const int WmInput = 0xFF;
@@ -157,5 +162,41 @@ namespace WM_INPUT
             public uint Message;                    // Corresponding Windows message for exmaple (WM_KEYDOWN, WM_SYASKEYDOWN etc)
             public uint ExtraInformation;           // The device-specific addition information for the event (seems to always be zero for keyboards)
         }
+        // [C#] WinFormのプログラムからコンソール(標準出力)に文字を出力する
+        // http://nanoappli.com/blog/archives/2363
+        [DllImport("kernel32.dll")]
+        public static extern bool AttachConsole(uint dwProcessId);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeConsole();
+
+        //*********************************************************************
+        /// <summary> コンソールに文字を出力する
+        /// 
+        /// </summary>
+        /// <param name="msg">  出力する文字列</param>
+        /// <returns>           true:成功, false:失敗</returns>
+        //*********************************************************************
+        private bool writeConsole(string msg)
+        {
+
+            if (!AttachConsole(System.UInt32.MaxValue))
+            {
+                return false;
+            }
+
+            // stdoutのストリームを取得
+            System.IO.Stream stream = System.Console.OpenStandardOutput();
+            System.IO.StreamWriter stdout = new System.IO.StreamWriter(stream);
+
+            // 指定された文字列を出力
+            stdout.WriteLine(msg);
+            stdout.Flush();
+
+            FreeConsole();
+            return true;
+        }
+
+
     }
 }
