@@ -69,7 +69,7 @@ namespace WM_INPUT
                 int LastX = input.f;
                 int LastY = input.g;
 
-                str = string.Format("{0}({1},{2},{3},{4},{5})\r\n", input.Header.Device, "Mouse", LastX, LastY, ButtonData, delta);
+                str = string.Format("{0},{1},{2},{3},{4},{5}\r\n","Mouse",  input.Header.Device, LastX, LastY, ButtonData, delta);
                 if (str != "0,0,0,0,0\r\n")
                 {
                     log(str);
@@ -82,19 +82,19 @@ namespace WM_INPUT
                 ushort VKey = input.d;
                 if (input.e == 256)
                 {
-                    message = "keyDown";
+                    message = "KeyDown";
                 }
                 else if (input.e == 257)
                 {
-                    message = "keyUp";
+                    message = "KeyUp";
                 }
-                str = string.Format("{0}({1},{2})\r\n", input.Header.Device, message, VKey);
+                str = string.Format("{0},{1},{2}\r\n", message, input.Header.Device, VKey);
                 log(str);
             }
         }
         private void log(string msg)
         {
-            writeConsole(msg);
+            //writeConsole(msg);
             Console.WriteLine(msg);
             textBox1.Text = msg;
         }

@@ -2,6 +2,7 @@ package
 {
 	import flash.desktop.NativeProcess;
 	import flash.desktop.NativeProcessStartupInfo;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.ProgressEvent;
 	import flash.filesystem.File;
@@ -19,6 +20,7 @@ package
 		private var _file:File = File.applicationDirectory.resolvePath(_fileName);
 		private var _nativeProcess:NativeProcess;
 		private var _textField:TextField = new TextField();
+		private var _markList:Object = {};
 		public function Main() 
 		{
 			_textField.defaultTextFormat = new TextFormat("_sans", 24);
@@ -59,6 +61,33 @@ package
 		private function nativeProcess_standardOutputData(e:ProgressEvent):void 
 		{
 			var str:String = _nativeProcess.standardOutput.readUTFBytes(_nativeProcess.standardOutput.bytesAvailable);
+			var list:Array = str.split(",");
+			if (list[0] == "Mouse") {
+				var id:int = parseInt(list[1]);
+				var tx:int = parseInt(list[2]);
+				var ty:int = parseInt(list[3]);
+				var shape:Shape;
+				if (_markList[id] == null) {
+					shape = new Shape();
+					shape.graphics.beginFill(id & 0xFFFFFF);
+					shape.graphics.drawCircle(0, 0, 30);
+					shape.graphics.endFill();
+					shape.x = stage.stageWidth >> 1;
+					shape.y = stage.stageHeight >> 1;
+					addChild(shape);
+					_markList[id] = shape;
+				}
+				shape = _markList[id];
+				shape.x += tx;
+				shape.y += ty;
+				shape.x = Math.min(Math.max(shape.x, 0), stage.stageWidth);
+				shape.y = Math.min(Math.max(shape.y, 0), stage.stageHeight);
+				
+				trace(tx, ty, str);
+				
+			}
+			
+			
 			_textField.text = str;
 			
 		}

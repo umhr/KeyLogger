@@ -14,3 +14,12 @@ C:\Users\bxi5\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\bin\Release\WM_INPUT.
 C:\Users\bxi5\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.Form1.resources
 C:\Users\bxi5\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.Properties.Resources.resources
 C:\Users\bxi5\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.csproj.GenerateResource.Cache
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\bin\Release\WM_INPUT.exe.config
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.exe
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.pdb
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\bin\Release\WM_INPUT.exe
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\bin\Release\WM_INPUT.pdb
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.csprojResolveAssemblyReference.cache
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.Form1.resources
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.Properties.Resources.resources
+C:\Users\umehara\Documents\GitHub\KeyLogger\WM_INPUT\WM_INPUT\obj\Release\WM_INPUT.csproj.GenerateResource.Cache
